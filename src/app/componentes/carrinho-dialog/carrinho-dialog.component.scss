@@ -1,0 +1,41 @@
+.mat-form-field {
+    margin-right: 8px;
+}
+
+.finalizar {
+    margin-right: 8px;
+}
+
+.linha {
+    display: flex;
+    align-items: center;
+    max-height: 40px;
+    .span {
+        margin-right: 8px;
+        text-align: center;
+    }
+}
+
+.mat-dialog-content {
+    overflow: unset;
+}
+
+/* Flex */
+.flex {
+	display: flex;
+}
+
+.flex-item-1 {
+	flex: 1;
+}
+
+/* Flex Item */
+.item {
+    width: 80px;
+    max-width: 80px;
+}
+
+body {
+	font-family: monospace;
+	color: #333;
+}

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{(produto.produtoId ? 'Editar' : 'Novo') + ' Produto'}}</h1>
+<div mat-dialog-content>
+
+  <img class="imagem" *ngIf="produto.foto" [src]="produto.foto">
+
+  <input type="file" fileread="produto.foto"
+  (change)="readUrl($event)"/>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="produto.nome" placeholder="Nome">
+  </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [(ngModel)]="produto.descricao" placeholder="Descrição">
+    </mat-form-field>
+
+    <mat-form-field>
+        <span matPrefix>R$</span>
+        <input matInput [(ngModel)]="produto.custoCompra" type="number" placeholder="Custo da Compra">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="fechar()">Cancelar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="produto" 
+  (click)="salvar()" cdkFocusInitial>Salvar</button>
+</div>

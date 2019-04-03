@@ -1,0 +1,62 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+    <mat-toolbar-row>
+        <span>Produtos</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="add-produto">
+    <button mat-icon-button color="primary" (click)="addOrEditProduto()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <span>Adicionar Produto</span>
+</div>
+
+<mat-table [dataSource]="produtoDataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="opcoes">
+        <mat-header-cell class="opcoes" *matHeaderCellDef></mat-header-cell>
+        <mat-cell class="opcoes" *matCellDef="let produto; let idx = index">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="addOrEditProduto(produto, idx)">Editar Produto</button>
+                <button mat-menu-item (click)="excluirProduto(produto, idx)">Excluir Produto</button>
+            </mat-menu>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="foto">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let produto"> 
+            <img class="imagem" [src]="produto.foto">
+        </mat-cell>
+        </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let produto"> {{produto.nome}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let produto"> {{produto.descricao}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="custoCompra">
+      <mat-header-cell *matHeaderCellDef> Custo </mat-header-cell>
+      <mat-cell *matCellDef="let produto"> R$ {{produto.custoCompra}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="carrinho">
+        <mat-header-cell class="opcoes" *matHeaderCellDef></mat-header-cell>
+        <mat-cell class="opcoes" *matCellDef="let produto">
+            <button mat-icon-button (click)="adicionarCarrinho(produto)">
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="['opcoes', 'foto', 'nome', 'descricao', 'custoCompra', 'carrinho']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['opcoes', 'foto', 'nome', 'descricao', 'custoCompra', 'carrinho'];"></mat-row>
+</mat-table>
+  

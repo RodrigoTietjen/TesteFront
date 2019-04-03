@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Carrinho</h1>
+<div mat-dialog-content>
+    <h2 *ngIf="carrinho.produtos.length === 0">Seu carrinho está vazio!</h2>
+
+    <div class="linha" *ngIf="carrinho.produtos.length !== 0">
+        <span class="flex-item-1"> Nome </span>
+        <span class="flex-item-1"> Preço Venda </span>
+        <span class="item flex-item-1">
+            Qtd
+        </span>
+    </div>
+
+    <div *ngFor="let produto of carrinho.produtos; let i = index" class="linha">
+        <span class="flex-item-1"> {{produto.produto.nome}} </span>
+        <span class="flex-item-1"> {{produto.precoVenda | currency:'symbol':'R$'}} </span>
+        <mat-form-field class="item flex-item-1">
+            <input matInput [(ngModel)]="produto.quantidade" (blur)="recalcular()"/>
+        </mat-form-field>
+        <button mat-icon-button (click)="removerProduto(i)">
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </div>
+</div>
+<div mat-dialog-actions *ngIf="carrinho.produtos.length !== 0">
+    <mat-form-field>
+        <mat-label>Despesas Totais</mat-label>
+        <span matPrefix>R$</span>
+        <input matInput placeholder="400.00" [(ngModel)]="carrinho.despesasTotais" (blur)="recalcular()"  
+        type="number"/>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Margem de Lucro" [(ngModel)]="carrinho.margemLucro" (blur)="recalcular()" 
+        type="number"/>
+        <span matSuffix>%</span>
+    </mat-form-field>
+
+  <button class="finalizar" mat-raised-button (click)="finalizarPedido()" color="primary" cdkFocusInitial>
+      Finalizar Pedido
+  </button>
+
+  <span>Total do Carrinho: {{carrinho.total | currency:'BRL'}}</span>
+</div>

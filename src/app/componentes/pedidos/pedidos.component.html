@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="toolbar mat-elevation-z6">
+    <mat-toolbar-row>
+        <span>Pedidos</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-table [dataSource]="pedidoDataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="despesasTotais">
+      <mat-header-cell *matHeaderCellDef> Despesas Totais </mat-header-cell>
+      <mat-cell *matCellDef="let pedido"> R$ {{pedido.despesasTotais}} </mat-cell>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="margemLucro">
+      <mat-header-cell *matHeaderCellDef> Margem de Lucro </mat-header-cell>
+      <mat-cell *matCellDef="let pedido"> {{pedido.margemLucro || 0}} % </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="valorTotal">
+      <mat-header-cell *matHeaderCellDef> Valor Total </mat-header-cell>
+      <mat-cell *matCellDef="let pedido"> R$ {{pedido.valorTotal}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="['despesasTotais', 'margemLucro', 'valorTotal']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['despesasTotais', 'margemLucro', 'valorTotal'];"></mat-row>
+</mat-table>
