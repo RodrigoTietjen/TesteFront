@@ -40,6 +40,7 @@ export class ProdutosComponent {
     }
 
     buscarProdutos() {
+      console.log('buscou');
       this.produtoService.getAll().subscribe((res) => {
         const prod = res.filter(p => p.custoCompra > 0);
         this.produtoDataSource.data = prod;
@@ -58,7 +59,16 @@ export class ProdutosComponent {
 
       dialogRef.afterClosed().subscribe(result => {
         if(result){
-          this.buscarProdutos();
+
+          if(result.produtoId){
+            this.produtoService.editar(result).subscribe((res) => {
+              this.buscarProdutos();
+            });
+        } else {
+            this.produtoService.salvar(result).subscribe((res) => {
+              this.buscarProdutos();
+            });
+        }
         }
       });
     }

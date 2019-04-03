@@ -21,21 +21,6 @@ export class ProdutoDialogComponent {
         this.produto = data;
     }
 
-
-    public salvar() {
-        if(this.produto.produtoId){
-            this.produtoService.editar(this.produto).subscribe((res) => {
-                this.produto = res;
-                this.sucesso();
-            });
-        } else {
-            this.produtoService.salvar(this.produto).subscribe((res) => {
-                this.produto = res;
-                this.sucesso();
-            });
-        }
-    }
-
     readUrl(event:any) {
         if (event.target.files && event.target.files[0]) {
           var reader = new FileReader();

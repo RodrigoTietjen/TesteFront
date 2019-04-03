@@ -1,6 +1,9 @@
 <h1 mat-dialog-title>{{(produto.produtoId ? 'Editar' : 'Novo') + ' Produto'}}</h1>
 <div mat-dialog-content>
 
+  <div>
+    <span class="fonte">Imagem</span>
+  </div>
   <img class="imagem" *ngIf="produto.foto" [src]="produto.foto">
 
   <input type="file" fileread="produto.foto"
@@ -21,6 +24,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="warn" (click)="fechar()">Cancelar</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="produto" 
-  (click)="salvar()" cdkFocusInitial>Salvar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="produto" cdkFocusInitial>Salvar</button>
 </div>
